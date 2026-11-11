@@ -1,0 +1,40 @@
+{
+  "rules": {
+    "portal": {
+      ".read": "auth != null && auth.token.email == 'abhishekanandpathak3@gmail.com'",
+      ".write": "auth != null && auth.token.email == 'abhishekanandpathak3@gmail.com'",
+      "students": {
+        ".read": "auth != null && auth.token.email == 'abhishekanandpathak3@gmail.com'",
+        ".write": "auth != null && auth.token.email == 'abhishekanandpathak3@gmail.com'"
+      },
+      "publicStudents": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.token.email == 'abhishekanandpathak3@gmail.com'"
+      },
+      "questionsBank": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.token.email == 'abhishekanandpathak3@gmail.com'"
+      },
+      "examSettings": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.token.email == 'abhishekanandpathak3@gmail.com'"
+      },
+      "examConfig": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.token.email == 'abhishekanandpathak3@gmail.com'"
+      },
+      "responses": {
+        ".read": "auth != null && auth.token.email == 'abhishekanandpathak3@gmail.com'",
+        ".write": "auth != null && auth.token.email == 'abhishekanandpathak3@gmail.com'",
+        "$responseId": {
+          ".write": "auth != null && (!data.exists() || auth.token.email == 'abhishekanandpathak3@gmail.com')",
+          ".validate": "auth != null && (auth.token.email == 'abhishekanandpathak3@gmail.com' || (newData.child('published').val() == false && newData.child('studentId').isString() && newData.child('studentName').isString() && newData.child('paper1Marks').isNumber() && newData.child('paper2Marks').isNumber()))"
+        }
+      },
+      "publishedResults": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.token.email == 'abhishekanandpathak3@gmail.com'"
+      }
+    }
+  }
+}
